@@ -127,7 +127,7 @@ node *insert(node *x, node *root)
                 // root->right = NULL;
                 x->left = root;
                 return x;
-            }
+            }//good project
         }
     }
     return root;
