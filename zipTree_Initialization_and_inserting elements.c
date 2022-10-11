@@ -18,40 +18,39 @@ int main()
 
     zipTree = NULL;
     node *x;
-        x = (node *)malloc(sizeof(node));
-        x->key = 6;
-        x->rank = 2;
-        // inserting->right = NULL;
-        // inserting->left = NULL;
-        // inserting->rank = randomRankGenerator();
+    x = (node *)malloc(sizeof(node));
+    x->key = 6;
+    x->rank = 2;
+    // inserting->right = NULL;
+    // inserting->left = NULL;
+    // inserting->rank = randomRankGenerator();
     zipTree = insert(x, zipTree);
     node *y;
-        y = (node *)malloc(sizeof(node));
+    y = (node *)malloc(sizeof(node));
     y->key = 9;
     y->rank = 1;
     node *temp2;
-    temp2=zipTree;
-    
+    temp2 = zipTree;
+
     zipTree = insert(y, zipTree);
     node *a;
-        a = (node *)malloc(sizeof(node));
+    a = (node *)malloc(sizeof(node));
     a->key = 91;
     a->rank = 21;
     zipTree = insert(a, zipTree);
     node *b;
-        b = (node *)malloc(sizeof(node));
+    b = (node *)malloc(sizeof(node));
     b->key = 19;
     b->rank = 331;
     zipTree = insert(b, zipTree);
     node *c;
-        c = (node *)malloc(sizeof(node));
+    c = (node *)malloc(sizeof(node));
     c->key = 912;
     c->rank = 111;
     zipTree = insert(c, zipTree);
     traversal(zipTree);
-    
-    temp2=zipTree;
-    
+
+    temp2 = zipTree;
 }
 int randomRankGenerator(void)
 {
@@ -83,7 +82,7 @@ node *insert(node *x, node *root)
 
     if (root == NULL)
     {
-        printf(" *%d* ",x->key);
+        printf(" *%d* ", x->key);
         x->right = NULL;
         x->left = NULL;
         // int randomRank = z;
@@ -93,7 +92,7 @@ node *insert(node *x, node *root)
     if (x->key < root->key)
     {
         printf("Hello\n");
-        if (insert(x,root->left) == x)
+        if (insert(x, root->left) == x)
         {
             if (x->rank < root->rank)
             {
@@ -114,7 +113,7 @@ node *insert(node *x, node *root)
         printf("Hello2\n");
         if (insert(x, root->right) == x)
         {
-            
+
             if (x->rank <= root->rank)
             {
                 printf("Hello4\n");
