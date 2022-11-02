@@ -5,7 +5,7 @@
 #define MAX_RANK 4
 #define bloom_size 701
 #define user_size 10
-int total_books = 0;
+int max_book_number = 0;
 typedef struct Node
 {
     int key;
@@ -24,6 +24,7 @@ typedef struct User
     struct User *next;
 
 } user;
+void printing_book_name(int x, node *root);
 user *head = NULL;
 void traversal(node *root);
 node *insert(node *x, node *root);
@@ -49,55 +50,27 @@ int main()
     // //  printf("%d ",book_number);
     //  Node_Genrator(book_number,);
     char book_name[50];
+    int kuch = 0;
 
     while (fgetc(filePointer) != EOF)
     {
         fscanf(filePointer, "%d", &book_number_input);
         fscanf(filePointer, "%s", book_name);
-        total_books++;
+
+        if (max_book_number < book_number_input)
+        {
+            max_book_number = book_number_input;
+        }
+
         Node_Genrator(book_number_input, book_name);
     }
     fclose(filePointer);
 
-    // node *zipTree;
-    // zipTree = (node *)malloc(sizeof(node));
-
-    // zipTree = NULL;
-    // node *x;
-    // x = (node *)malloc(sizeof(node));
-    // x->key = 6;
-    // x->rank = 2;
-    // inserting->right = NULL;
-    // inserting->left = NULL;
-    // inserting->rank = randomRankGenerator();
-    // zipTree = insert(x, zipTree);
-    // node *y;
-    // y = (node *)malloc(sizeof(node));
-    // y->key = 9;
-    // y->rank = 1;
-    // node *temp2;
-    // temp2 = zipTree;
-
-    // zipTree = insert(y, zipTree);
-    // node *a;
-    // a = (node *)malloc(sizeof(node));
-    // a->key = 91;
-    // a->rank = 21;
-    // zipTree = insert(a, zipTree);
-    // node *b;
-    // b = (node *)malloc(sizeof(node));
-    // b->key = 19;
-    // b->rank = 331;
-    // zipTree = insert(b, zipTree);
-    // node *c;
-    // c = (node *)malloc(sizeof(node));
-    // c->key = 912;
-    // c->rank = 111;
-    // zipTree = insert(c, zipTree);
-    traversal(zipTree);
-    printf("\n");
-    preorder(zipTree);
-    printf("\n\n**%d**\n\n", total_books);
+    // traversal(zipTree);
+    // printf("\n");
+    // preorder(zipTree);
+    printf("\n\n**%d**\n\n", max_book_number);
+    
     char ch = 'A';
     int book_search;
     int book_number;
@@ -147,12 +120,14 @@ int main()
                     }
                     else
                     {
-                        printf("Succesfully borrowed\n");
+                        printf("Borrowed book name : ");
+                        printing_book_name(book_number,zipTree);
+                        printf("\nSuccesfully borrowed\n");
                         int hash_number = hash_code(book_number);
                         if (us->bloom_filter[hash_number] == 0)
                         {
                             us->read++;
-                            float percent = (us->read / total_books) * 100;
+                            float percent = (us->read / max_book_number) * 100;
                             if (percent >= 90)
                             {
                                 for (int i = 0; i < 701; i++)
@@ -174,19 +149,38 @@ int main()
             }
             else if (ch == 'R')
             {
-                int random_book = (rand() % total_books) + 1;
-                printf("\n\n**%d**\n\n", random_book);
+                int checking = 0;
+                int random_book;
+                while (checking == 0)
+                {
+
+                    random_book = (rand() % max_book_number) + 1;
+                    if (searchingKey(random_book, zipTree) == 1)
+                    {
+                        checking++;
+                    }
+                }
+                // printf("\n\n**%d**\n\n", random_book);
                 int hash_number = hash_code(random_book);
-                printf("\n\n**%d**\n\n", hash_number);
+                // printf("\n\n**%d**\n\n", hash_number);
                 while (us->bloom_filter[hash_number] == 1)
                 {
 
-                    random_book = (rand() % total_books) + 1;
-                    printf("\n\n**%d**\n\n", random_book);
+                    checking = 0;
+                    while (checking == 0)
+                    {
+
+                        random_book = (rand() % max_book_number) + 1;
+                        if (searchingKey(random_book, zipTree) == 1)
+                        {
+                            checking++;
+                        }
+                    }
                     hash_number = hash_code(random_book);
-                    printf("\n\n**%d**\n\n", hash_number);
                 }
-                printf("Recommended book : %d\nif u want to borrow this book then press B or press R to recommend again : ", random_book);
+                printf("Recommended book number : %d\nRecommended book name : ", random_book);
+                printing_book_name(random_book,zipTree);
+                printf("\nif u want to borrow this book then press B or press R to recommend again : ");
                 scanf("%c", &ch);
                 getchar();
                 if (ch == 'B')
@@ -194,7 +188,7 @@ int main()
                     printf("Succesfully borrowed\n");
 
                     us->read++;
-                    float percent = (us->read / total_books) * 100;
+                    float percent = (us->read / max_book_number) * 100;
                     if (percent >= 90)
                     {
                         for (int i = 0; i < 701; i++)
@@ -225,8 +219,30 @@ int randomRankGenerator(void)
 {
     int temp = rand();
     temp = temp % MAX_RANK;
-    printf("%d ", temp);
+    // printf("%d ", temp);
     return temp + 1;
+}
+void printing_book_name(int x, node *root)
+{
+    if (x == root->key)
+    {
+        
+        
+        printf("%s", root->string);
+
+        
+        return;
+    }
+    if (x < root->key)
+    {
+
+        return printing_book_name(x, root->left);
+    }
+    else
+    {
+
+        return printing_book_name(x, root->right);
+    }
 }
 void traversal(node *root)
 {
@@ -288,7 +304,7 @@ node *insert(node *x, node *root)
 
     if (root == NULL)
     {
-        printf(" *%d* ", x->key);
+
         x->right = NULL;
         x->left = NULL;
 
@@ -296,17 +312,17 @@ node *insert(node *x, node *root)
     }
     if (x->key < root->key)
     {
-        printf("Hello\n");
+
         if (insert(x, root->left) == x)
         {
             if (x->rank < root->rank)
             {
-                printf("Hello6\n");
+
                 root->left = x;
             }
             else
             {
-                printf("Hello5\n");
+
                 root->left = x->right;
                 x->right = root;
 
@@ -316,18 +332,18 @@ node *insert(node *x, node *root)
     }
     else
     {
-        printf("Hello2\n");
+
         if (insert(x, root->right) == x)
         {
 
             if (x->rank <= root->rank)
             {
-                printf("Hello4\n");
+
                 root->right = x;
             }
             else
             {
-                printf("Hello3\n");
+
                 root->right = x->left;
                 // root->right = NULL;
                 x->left = root;

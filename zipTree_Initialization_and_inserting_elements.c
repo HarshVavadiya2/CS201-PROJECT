@@ -5,7 +5,7 @@
 #define MAX_RANK 4
 #define bloom_size 701
 #define user_size 10
-int total_books = 0;
+int max_book_number = 0;
 typedef struct Node
 {
     int key;
@@ -53,7 +53,7 @@ int main()
      {  
        fscanf(filePointer,"%d",&book_number);
        fscanf(filePointer,"%s",book_name);
-       total_books++;
+       max_book_number++;
        Node_Genrator(book_number,book_name);
        
      }
@@ -97,7 +97,7 @@ int main()
     traversal(zipTree);
     printf("\n");
    //preorder  (zipTree);
-    printf("\n\n**%d**\n\n",total_books);
+    printf("\n\n**%d**\n\n",max_book_number);
     int entry_number;
         printf("Please,Enter your entry number\n");
         scanf("%d", &entry_number);
@@ -174,7 +174,7 @@ int main()
         {
 
             // get random_book
-            int random_book = (rand() % total_books) + 1;
+            int random_book = (rand() % max_book_number) + 1;
             int hash_number = random_book;
             // if(us->bloom_filter[hash_number]==0){
             //     printf("Recommende book : ");
@@ -186,7 +186,7 @@ int main()
             while (us->bloom_filter[hash_number] != 0)
             {
 
-                int random_book = (rand() % total_books) + 1;
+                int random_book = (rand() % max_book_number) + 1;
                 hash_number = random_book;
             }
 
