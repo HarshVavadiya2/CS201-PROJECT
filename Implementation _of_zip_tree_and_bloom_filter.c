@@ -2,26 +2,28 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#define MAX_RANK 4
-#define bloom_size 701
+#define MAX_RANK 4//maximum rank of the zip tree element 
+#define bloom_size 701//size of user bloom filter
 #define user_size 10
-int max_book_number = 0;
+int max_book_number = 0;//Intializeing maximum book number
+//Defining node of zip tree for store element
 typedef struct Node
 {
-    int key;
-    char string[50];
-    struct Node *right, *left;
-    int rank;
+    int key;//store book number
+    char string[50];//store book name
+    struct Node *right, *left;//right will point right node of ziptree and left will point left node 
+    int rank;//store rank of node
 } node;
-node *zipTree = NULL;
-// zipTree = NULL;
+
+node *zipTree = NULL; //ziptree is a pointer which will point to the root of the zip tree
+
+//Defining structure for the user 
 typedef struct User
 {
-    //  char name[50];
-    int entry_number;
-    int read;
-    int bloom_filter[701];
-    struct User *next;
+    int entry_number;//store entry number of an user
+    int read;//read will store how many book user has read
+    int bloom_filter[701];//bloom filter of user
+    struct User *next;//this will point the next user in linked list
 
 } user;
 void printing_book_name(int x, node *root);
@@ -38,64 +40,59 @@ int searchingKey(int x, node *root);
 int main()
 {
 
-    FILE *filePointer;
+    FILE *filePointer;//file pointer which point to the input file
     filePointer = fopen("input.txt", "r");
     if (filePointer == NULL)
     {
         printf("file is not opening\n");
     }
-    int book_number_input;
-    char book_name[50];
-    int kuch = 0;
+    int book_number_input;//store book number from input file
+    char book_name[50];//store book name from input file
+    // int kuch = 0;
 
     while (fgetc(filePointer) != EOF)
     {
-        fscanf(filePointer, "%d", &book_number_input);
-        fscanf(filePointer, "%s", book_name);
+        fscanf(filePointer, "%d", &book_number_input);//scanf book number from input file
+        fscanf(filePointer, "%s", book_name);//scanf book name from file
 
-        if (max_book_number < book_number_input)
+        if (max_book_number < book_number_input)//To find maximum numberth of book
         {
             max_book_number = book_number_input;
         }
 
-        Node_Genrator(book_number_input, book_name);
+        Node_Genrator(book_number_input, book_name);//This will genrate node of zip tree
     }
-    fclose(filePointer);
-
-    // traversal(zipTree);
-    // printf("\n");
-    // preorder(zipTree);
-    // printf("\n\n**%d**\n\n", max_book_number);
+    fclose(filePointer);//file will close
     
     char ch = 'A';
-    int book_search;
-    int book_number;
+    int book_search;//for search book
+    int book_number;//for store book number
     while (1)
     {
-        int entry_number;
+        int entry_number;//store entry number of user
         printf("\nPlease,Enter your entry number\n");
         scanf("%d", &entry_number);
         getchar();
 
-        user *us = user_genrate(entry_number);
+        user *us = user_genrate(entry_number);//us will point user ,if user is new than use will point that user otherwise it will point to existing user
 
         printf("\nIf you want to borrow a book press B or If you want recommendtation of book press R\n");
         scanf("%c", &ch);
         getchar();
-        while (ch != 'Q')
+        while (ch != 'Q')//if user will press Q then loop will break out
         {
            
-            if (ch == 'B')
+            if (ch == 'B')//if user choose B (for borrow)
             {
 
                 printf("\nPlease,enter the book number you want to borrow\n");
                 scanf("%d", &book_number);
                 getchar();
 
-                book_search = searchingKey(book_number, zipTree);
+                book_search = searchingKey(book_number, zipTree);//book serach store book number using searching key that user want to borrow
                 while (ch == 'B')
                 {
-                    if (book_search == 0)
+                    if (book_search == 0)//if book is not found or not present in storage
                     {
                         printf("\nYour entered book is not available\n");
                         printf("If you want to search another book then press B OR if you wnat to exit the press Q\n");
@@ -109,13 +106,13 @@ int main()
                             book_search = searchingKey(book_number, zipTree);
                         }
                     }
-                    else
+                    else//if book is found
                     {
                         printf("Borrowed book name : ");
-                        printing_book_name(book_number,zipTree);
+                        printing_book_name(book_number,zipTree);//this function will print book that user wnat to borrow
                         printf("\nSuccesfully borrowed\n");
-                        int hash_number = hash_code(book_number);
-                        if (us->bloom_filter[hash_number] == 0)
+                        int hash_number = hash_code(book_number);//hash number store hash number for update bloom filter
+                        if (us->bloom_filter[hash_number] == 0)//if index of bloom filter corresponding to hashnumber is eqaul to 0 then reset bloom filter 
                         {
                             us->read++;
                             float percent = (us->read / max_book_number) * 100;
@@ -129,7 +126,7 @@ int main()
                                 printf("Bloom Filter has been reset(your history of read books have been deleted)\n");
                             }
                         }
-                        us->bloom_filter[hash_number] = 1;
+                        us->bloom_filter[hash_number] = 1;//otherwise update to 1 means user has borrow that book
 
                         printf("If you want to borrow book then press B OR If you want recommendtation of book press R OR if you wnat to exit the press Q\n");
                         scanf("%c", &ch);
@@ -138,23 +135,20 @@ int main()
                     }
                 }
             }
-            else if (ch == 'R')
+            else if (ch == 'R')//if user choose R for book recommandtation
             {
-                int checking = 0;
+                int checking = 0;//Checking is recommanded book is present or not
                 int random_book;
-                while (checking == 0)
+                while (checking == 0)//if checking is 1 that means recommanded is present
                 {
-
-                    random_book = (rand() % max_book_number) + 1;
+                    random_book = (rand() % max_book_number) + 1;//random number will store randome book number
                     if (searchingKey(random_book, zipTree) == 1)
                     {
                         checking++;
                     }
                 }
-                // printf("\n\n**%d**\n\n", random_book);
-                int hash_number = hash_code(random_book);
-                // printf("\n\n**%d**\n\n", hash_number);
-                while (us->bloom_filter[hash_number] == 1)
+                int hash_number = hash_code(random_book);//hash number store hash number for update bloom filter
+                while (us->bloom_filter[hash_number] == 1)//if bloom_filter[hash_number] is 1 means that book is already borrow by user 
                 {
 
                     checking = 0;
