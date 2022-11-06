@@ -45,10 +45,6 @@ int main()
         printf("file is not opening\n");
     }
     int book_number_input;
-
-    //  fscanf(filePointer,"%d",&book_number);
-    // //  printf("%d ",book_number);
-    //  Node_Genrator(book_number,);
     char book_name[50];
     int kuch = 0;
 
@@ -69,7 +65,7 @@ int main()
     // traversal(zipTree);
     // printf("\n");
     // preorder(zipTree);
-    printf("\n\n**%d**\n\n", max_book_number);
+    // printf("\n\n**%d**\n\n", max_book_number);
     
     char ch = 'A';
     int book_search;
@@ -77,27 +73,22 @@ int main()
     while (1)
     {
         int entry_number;
-        printf("Please,Enter your entry number\n");
+        printf("\nPlease,Enter your entry number\n");
         scanf("%d", &entry_number);
         getchar();
 
         user *us = user_genrate(entry_number);
 
-        printf("If you want to borrow a book press B or If you want recommendtation of book press R\n");
+        printf("\nIf you want to borrow a book press B or If you want recommendtation of book press R\n");
         scanf("%c", &ch);
         getchar();
         while (ch != 'Q')
         {
-            // if (ch != 'R' && ch !='B')
-            // {
-            //     printf("If you want to borrow a book press B or If you want recommendtation of book press R\n");
-            //     scanf("%c", &ch);
-            //     getchar();
-            // }
+           
             if (ch == 'B')
             {
 
-                printf("Please,enter the book number you want to borrow\n");
+                printf("\nPlease,enter the book number you want to borrow\n");
                 scanf("%d", &book_number);
                 getchar();
 
@@ -106,13 +97,13 @@ int main()
                 {
                     if (book_search == 0)
                     {
-                        printf("your entered book is not available\n");
+                        printf("\nYour entered book is not available\n");
                         printf("If you want to search another book then press B OR if you wnat to exit the press Q\n");
                         scanf("%c", &ch);
                         getchar();
                         if (ch == 'B')
                         {
-                            printf("Please,enter the book number you want to borrow\n");
+                            printf("\nPlease,enter the book number you want to borrow\n");
                             scanf("%d", &book_number);
                             getchar();
                             book_search = searchingKey(book_number, zipTree);
@@ -140,7 +131,7 @@ int main()
                         }
                         us->bloom_filter[hash_number] = 1;
 
-                        printf("If you want to search another book then press B OR If you want recommendtation of book press R OR if you wnat to exit the press Q\n");
+                        printf("If you want to borrow book then press B OR If you want recommendtation of book press R OR if you wnat to exit the press Q\n");
                         scanf("%c", &ch);
                         getchar();
                         break;
@@ -180,7 +171,7 @@ int main()
                 }
                 printf("Recommended book number : %d\nRecommended book name : ", random_book);
                 printing_book_name(random_book,zipTree);
-                printf("\nif u want to borrow this book then press B or press R to recommend again : ");
+                printf("\nIf u want to borrow this book then press B or press R to recommend again : ");
                 scanf("%c", &ch);
                 getchar();
                 if (ch == 'B')
@@ -199,14 +190,14 @@ int main()
                         printf("Bloom Filter has been reset(your history of read books have been deleted)\n");
                     }
                     us->bloom_filter[hash_number] = 1;
-                    printf("If you want to borrow book then press B OR If you want recommendtation of book press R OR if you wnat to exit the press Q\n");
+                    printf("\nIf you want to borrow book then press B OR If you want recommendtation of book press R OR if you wnat to exit the press Q\n");
                     scanf("%c", &ch);
                     getchar();
                 }
             }
             else
             {
-                printf("Please enter the correct choice\n");
+                printf("Please enter the correct choice!!\n");
                 scanf("%c", &ch);
                 getchar();
             }
