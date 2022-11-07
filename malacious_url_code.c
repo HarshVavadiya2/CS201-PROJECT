@@ -63,7 +63,7 @@ int main()
         scanf("%s",&ch);//taking input of choice
         getchar();
         if(ch=='A'){//if you want to check url whether it is malicious or not
-            printf("\t\tPlease enter the url u want to check : ");
+            printf("\t\tPlease enter the url or domain name u want to check : ");
             char url1[200];
             scanf("%s",url1);//taking input of url
             getchar();
