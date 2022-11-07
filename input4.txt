@@ -6,3 +6,90 @@
  www.typingtest.com/trainer/
  www.google.com/search?q=typing+speed&sxsrf=ALiCzsZ8OQ3MWAREFluieZNmyn0k3fkmOQ%3A1666809836682&ei=7H9ZY8WwKcCOseMPxfOy8AI&ved=0ahUKEwjF1uTBxv76AhVAR2wGHcW5DC4Q4dUDCA8&uact=5&oq=typing+speed&gs_lcp=Cgdnd3Mtd2l6EAMyCggAELEDEIMBEEMyBwgAELEDEEMyBQgAEJECMggIABCxAxCRAjIECAAQQzIECAAQQzIFCAAQkQIyBQgAEIAEMgUIABCABDIECAAQQzoECCMQJzoECC4QQzoTCC4QsQMQgwEQxwEQ0QMQ1AIQQzoKCC4QsQMQgwEQQzoQCAAQgAQQhwIQsQMQgwEQFDoICAAQgAQQsQM6CwgAELEDEIMBEJECOgoIABCABBCxAxAKOgsIABCABBCxAxCDAUoECE0YAUoECEEYAEoECEYYAFAAWLUiYNYjaAFwAXgAgAGRAYgBiA2SAQQwLjEzmAEAoAEBwAEB&sclient=gws-wiz
  www.google.com
+ https://zeustracker.abuse.ch/blocklist.php 
+ http://www.blocklist.de/en/index.html -
+ http://www.networksec.org/grabbho/block.txt -
+ https://www.ip-finder.me/ip-full-list/ -
+ http://www.urlblacklist.com/ -
+ https://github.com/maravento/blackweb -
+ http://support.clean-mx.com/clean-mx/login.php -
+ http://www.squidblacklist.org/ -
+ http://www.shadowserver.org/wiki/pmwiki.php?n=Services/Reports -
+ https://www.scumware.org/ -
+ http://www.projecthoneypot.org/list_of_ips.php -
+ http://www.phishtank.com/phish_archive.php -
+ http://www.malwareurl.com/ - 
+ http://www.malware.com.br/open-source.shtml -
+ https://atlas.arbor.net/about/ -
+ http://www.team-cymru.org/bogon-reference.html -
+ http://www.dshield.org/ipsascii.html -
+ http://iplists.firehol.org/ -
+ http://www.malwaredomainlist.com/hostslist/hosts.txt -
+ tryteens.com
+ creativebookmark.com	
+ vegweb.com
+ delgets.com
+ kvfan.net
+ hgk.biz
+ salescript.info
+ tryteens.com
+ likaraoke.com
+ mactep.org
+ nacjalneg.info
+ http://gaup.of.com
+ http://e.ru/stats/00/counter/{hex}/{hex}
+ http://i.ru/stats/00/counter/{hex}/{hex}
+ http://lt.com/stats/00/counter/{hex}/{hex}
+ http://isubu.ru/stats/00/counter/{hex}/{hex}
+ http://refret.ru/stats/00/counter/{hex}/{hex}
+ http://enotoft.ru/stats/00/counter/{hex}/{hex}
+ http://.64.218/
+ http://ramica.com/css/2110out.osa
+ http://theteflacademy.o.uk/css/2110out.osa
+ http://tzsverjrzduo52siy.b.blutmagie.de
+ http://tzsverjrzduo52siy.n.lt
+ http://tzsverjrzduo52siy.b.fi
+ http://tzsverjrzduo52siy.n.gq
+ http://tzsverjrzduo52siy.b.org
+ http://tzsverjrzduo52siy.n.cab
+ http://gs4.2.tw:1080/update?id={random}
+ http://gs3.2.tw:53/update?id={random}
+ http://gs2.2.tw:443/update?id={random}
+ http://a.s.perl.sh
+ http://a-gwas-01.{BLOCKED}p.net
+ http://a-gwas-01.{BLOCKED}s.org
+ http://maypole.{BLOCKED}o.kr/mm/sun.exe
+ http://5.23.149/pop/pop/1.html
+ http://f.com/q
+ http://.241.85/click?sid=8f75f821c687855c53899112090ed27514c749fdcid=0
+ http://.241.85/click?sid=7434e7992049245727327b488788b25379aeb75fcid=0
+ http://ablesearch.com/search.php?q=testosterone+therapy
+ http://.241.85/click?sid=6a0d85c48946f3bd0d1925d87c101f406280d4dccid=0
+ http://orcefinder.com/search.php?q=medical+symptoms+checker
+ clicnews.com
+ dfwdiesel.net
+ divineenterprises.net
+ fantasticfilms.ru
+ gardensrestaurantandcatering.com
+ ginedis.com
+ gncr.org
+ hdvideoforums.org
+ hihanin.com
+ kingfamilyphotoalbum.com
+ likaraoke.com
+ mactep.org
+ magic4you.nu
+ marbling.pe.kr
+ nacjalneg.info
+ pronline.ru
+ purplehoodie.com
+ qsng.cn
+ seksburada.net
+ sportsmansclub.net
+ stock888.cn
+ tathli.com
+ teamclouds.com
+ texaswhitetailfever.com
+ wadefamilytree.org
+ xnescat.info
+ yt118.com
