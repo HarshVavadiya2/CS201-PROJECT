@@ -68,7 +68,7 @@ int main()
 
     clock_t end = clock();//clock ends
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("The execution time for creating zipTree is %f.\n",time_spent);
+    printf("\nThe execution time for creating zipTree is %f.\n",time_spent);
     
     char ch = 'A';
     int book_search;//for search book
