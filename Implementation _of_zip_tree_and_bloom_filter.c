@@ -39,6 +39,8 @@ user *user_genrate(int entry_number);
 int searchingKey(int x, node *root);
 int main()
 {
+    double time_spent = 0.0;//for calculating the execution time
+    clock_t begin = clock();//clock starts
 
     FILE *filePointer;//file pointer which point to the input file
     filePointer = fopen("input.txt", "r");
@@ -63,6 +65,10 @@ int main()
         Node_Genrator(book_number_input, book_name);//This will genrate node of zip tree
     }
     fclose(filePointer);//file will close
+
+    clock_t end = clock();//clock ends
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("\nThe execution time for creating zipTree is %f.\n",time_spent);
     
     char ch = 'A';
     int book_search;//for search book
