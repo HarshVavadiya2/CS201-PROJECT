@@ -98,7 +98,7 @@ int main()
                         printf("If you want to search another book then press B OR if you wnat to exit the press Q\n");
                         scanf("%c", &ch);
                         getchar();
-                        if (ch == 'B')
+                        if (ch == 'B')//if you want to borrow a book
                         {
                             printf("\nPlease,enter the book number you want to borrow\n");
                             scanf("%d", &book_number);
@@ -200,6 +200,7 @@ int main()
     // temp2 = zipTree;
     return 0;
 }
+//function for generating random rank of node
 int randomRankGenerator(void)
 {
     int temp = rand();
@@ -207,9 +208,11 @@ int randomRankGenerator(void)
     // printf("%d ", temp);
     return temp + 1;
 }
+
+//function for printing book name
 void printing_book_name(int x, node *root)
 {
-    if (x == root->key)
+    if (x == root->key)//if book number matches with key value of root
     {
         
         
@@ -218,23 +221,24 @@ void printing_book_name(int x, node *root)
         
         return;
     }
-    if (x < root->key)
+    if (x < root->key)//if book number is less than key value of root go to left of root
     {
 
         return printing_book_name(x, root->left);
     }
-    else
+    else//if book number is more than key value of root go to left of root
     {
 
         return printing_book_name(x, root->right);
     }
 }
+//function for traversing in zip tree
 void traversal(node *root)
 {
-    // printf(",,");
+   
     if (root == NULL)
     {
-        // printf("*");
+        
         return;
     }
     // traverse the left subtree
@@ -246,6 +250,7 @@ void traversal(node *root)
     // traverse the right subtree
     traversal(root->right);
 }
+//preorder traversal
 void preorder(node *root)
 {
     if (root != NULL)
@@ -255,13 +260,15 @@ void preorder(node *root)
         preorder(root->right);
     }
 }
+//function for searching book number 
 int searchingKey(int x, node *root)
 {
-    if (x == root->key)
+    if (x == root->key)//if book number matches with key value of root 
     {
         return 1;
     }
-    if (x < root->key)
+
+    if (x < root->key)//if book number is less  than  key value of root then go to left of root
     {
         if (root->left == NULL)
         {
@@ -272,7 +279,7 @@ int searchingKey(int x, node *root)
             return searchingKey(x, root->left);
         }
     }
-    else
+    else//if book number is more  than  key value of root then go to right of root
     {
         if (root->right == NULL)
         {
@@ -284,10 +291,11 @@ int searchingKey(int x, node *root)
         }
     }
 }
+//Function for insertion in ziptree
 node *insert(node *x, node *root)
 {
 
-    if (root == NULL)
+    if (root == NULL)//if root is null then make x as root
     {
 
         x->right = NULL;
@@ -295,17 +303,17 @@ node *insert(node *x, node *root)
 
         return x;
     }
-    if (x->key < root->key)
+    if (x->key < root->key)//if key value of x is less than key value of root then go to left of root and insert 
     {
 
         if (insert(x, root->left) == x)
         {
-            if (x->rank < root->rank)
+            if (x->rank < root->rank)//if rank of x is less than root's rank then insert it to left
             {
 
                 root->left = x;
             }
-            else
+            else//if rank of x is greater than root's rank then make x's right equal to root's left and x's right equal to root
             {
 
                 root->left = x->right;
@@ -315,18 +323,18 @@ node *insert(node *x, node *root)
             }
         }
     }
-    else
+    else//if key value of x is greater than key value of root then go to right of root and insert
     {
 
         if (insert(x, root->right) == x)
         {
 
-            if (x->rank <= root->rank)
+            if (x->rank <= root->rank)//if rank of x is less than or equal to root's rank then insert it to right
             {
 
                 root->right = x;
             }
-            else
+            else//if rank of x is greater than root's rank then make x's left equal to root's  right and x's left equal to root
             {
 
                 root->right = x->left;
@@ -334,16 +342,13 @@ node *insert(node *x, node *root)
                 x->left = root;
 
                 return x;
-            } // good project
+            } 
         }
     }
 
     return root;
 }
-// char *string_generator(char *book_name){
-//     char *temp=book_name;
-//     return temp;
-// }
+//Function for generating a node by  allocating size of a node and passing it's key , rank string 
 void Node_Genrator(int key, char book_name[])
 {
     node *x;
@@ -353,45 +358,51 @@ void Node_Genrator(int key, char book_name[])
     strcpy(x->string, book_name);
     zipTree = insert(x, zipTree);
 }
+//Function for generating hash number
 int hash_code(int key)
 {
     return key % bloom_size;
 }
+
+//Function for searching a user or inserting a node of user in  linked list if user id is not present
 user *user_genrate(int entry_number)
 {
 
-    if (head == NULL)
+    if (head == NULL)//if no node is present
     {
         user *temp;
-        temp = (user *)malloc(sizeof(user));
-        // strcpy(temp->name, name);
-        temp->entry_number = entry_number;
+        temp = (user *)malloc(sizeof(user));//allocating memory for user node
+       
+        temp->entry_number = entry_number;//storing user's entry number 
+
         for (int i = 0; i < 701; i++)
         {
-            temp->bloom_filter[i] = 0;
+            temp->bloom_filter[i] = 0;//making all values 0 initially in the array of bloom filter
         }
+
         temp->read = 0;
         temp->next = NULL;
         head = temp;
         return temp;
     }
-    else
+    else//if already a node is present
     {
         user *temp = head;
-        // int flag = 0;
-        while (temp != NULL && temp->entry_number != entry_number)
+       
+        while (temp != NULL && temp->entry_number != entry_number)//until we get null or the if the entry number is searched in the linked list
         {
             temp = temp->next;
         }
-        if (temp == NULL)
+        if (temp == NULL)//entry number is not present in the linked list
         {
             user *temp2;
-            temp2 = (user *)malloc(sizeof(user));
-            // strcpy(temp2->name, name);
-            temp2->entry_number = entry_number;
+            temp2 = (user *)malloc(sizeof(user));//allocating memory for new node
+            
+            temp2->entry_number = entry_number;//storing user's entry number
+
             for (int i = 0; i < 701; i++)
             {
-                temp2->bloom_filter[i] = 0;
+                temp2->bloom_filter[i] = 0;//making all values 0 initially in the array of bloom filter
             }
             temp2->read = 0;
             temp2->next = head;
@@ -399,19 +410,7 @@ user *user_genrate(int entry_number)
             return temp2;
         }
         int count = 0;
-        // for (int i = 0; i < 701; i++)
-        // {
-        //     if (temp->bloom_filter[i] == 1)
-        //         count++;
-        // }
-        // if (count == 701)
-        // {
-        //     for (int i = 0; i < 701; i++)
-        //     {
-        //         (temp->bloom_filter[i] = 0);
-        //     }
-        // }
-        // temp->read = 0;
+       
         return temp;
     }
 }
