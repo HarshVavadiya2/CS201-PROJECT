@@ -1,7 +1,7 @@
 # CS201-PROJECT
-> Applications & Implementation of Zip Tree and Bloom Filter. 
+## Applications & Implementation of Zip Tree and Bloom Filter.
 
-##Group members:  
+## Group members:  
 VAVADIYA HARSH - 2021CSB1139. 
 PATEL HET - 2021CSB1119. 
 AYUSH SAHU - 2021CSB1077. 
@@ -12,13 +12,13 @@ Dr. Anil Shukla
 **Teaching Assistant** :
 Vinay Sir
 
-###Applications & Implementation of Zip Tree and Bloom Filter as a part of CS201 (DSA) project.
+### Applications & Implementation of Zip Tree and Bloom Filter as a part of CS201 (DSA) project.
 Implementation of ZIP TREE and some of its functions such as insert, search , traversal, etc. We have also analysed the algorithm and studied their average time complexities.
 
-###How to Run The Program
+### How to Run The Program
 The program can be compiled and run directly in the terminal using gcc.
 
-###Expected inputs and outputs:  
+### Expected inputs and outputs:  
 
 **For Library Book Recomendation** :
 First line will show the execution time of the code for creating the Zip Tree using the input.txt file
