@@ -1,6 +1,5 @@
 # CS201-PROJECT
 ## Applications & Implementation of Zip Tree and Bloom Filter.
-```
 
 ## Group members:  
 VAVADIYA HARSH - 2021CSB1139.  
